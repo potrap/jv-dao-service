@@ -22,7 +22,7 @@ public class ManufacturerServiceImpl implements ManufacturerService {
     @Override
     public Manufacturer get(Long id) {
         return manufacturerDao.get(id).orElseThrow(() ->
-                new RuntimeException("Can't find driver with such id: " + id));
+                new RuntimeException("Can't find manufacturer with such id: " + id));
     }
 
     @Override
