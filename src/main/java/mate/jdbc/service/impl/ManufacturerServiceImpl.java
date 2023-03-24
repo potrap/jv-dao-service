@@ -2,6 +2,7 @@ package mate.jdbc.service.impl;
 
 import java.util.List;
 import mate.jdbc.dao.ManufacturerDao;
+import mate.jdbc.lib.Inject;
 import mate.jdbc.lib.Injector;
 import mate.jdbc.lib.Service;
 import mate.jdbc.model.Manufacturer;
@@ -10,11 +11,8 @@ import mate.jdbc.service.ManufacturerService;
 @Service
 public class ManufacturerServiceImpl implements ManufacturerService {
     private final Injector injector = Injector.getInstance("mate.jdbc");
-    private final ManufacturerDao manufacturerDao;
-
-    {
-        manufacturerDao = (ManufacturerDao) injector.getInstance(ManufacturerDao.class);
-    }
+    @Inject
+    private ManufacturerDao manufacturerDao;
 
     @Override
     public Manufacturer create(Manufacturer manufacturer) {
@@ -23,10 +21,8 @@ public class ManufacturerServiceImpl implements ManufacturerService {
 
     @Override
     public Manufacturer get(Long id) {
-        if (manufacturerDao.get(id).isPresent()) {
-            return manufacturerDao.get(id).get();
-        }
-        throw new RuntimeException("Can't find driver with such id: " + id);
+        return manufacturerDao.get(id).orElseThrow(() ->
+                new RuntimeException("Can't find driver with such id: " + id));
     }
 
     @Override

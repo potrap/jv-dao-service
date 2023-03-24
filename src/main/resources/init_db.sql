@@ -9,10 +9,10 @@ CREATE TABLE `manufacturers` (
                                         PRIMARY KEY (`id`));
 
 CREATE TABLE `drivers` (
-                                        `id` bigint NOT NULL AUTO_INCREMENT,
-                                        `name` varchar(225) DEFAULT NULL,
-                                        `license_number` varchar(225) DEFAULT NULL,
-                                        `is_deleted` tinyint DEFAULT '0',
+                                        `id` BIGINT NOT NULL AUTO_INCREMENT,
+                                        `name` VARCHAR(225) DEFAULT NULL,
+                                        `license_number` VARCHAR(225) DEFAULT NULL,
+                                        `is_deleted` TINYINT DEFAULT '0',
                                         PRIMARY KEY (`id`));
 
 
